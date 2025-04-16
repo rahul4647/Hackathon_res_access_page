@@ -1,27 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Get Your PDF</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Your Hackathon Cheatsheet | StuVis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d1117;
+      color: #ffffff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #ffffff; /* Changed blue color to white */
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    p.description {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    input[type="email"] {
+      padding: 12px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 20px;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #ffffff; /* Changed blue color to white */
+      color: #000;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: 600;
+      color: #ffffff; /* Changed blue color to white */
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-  <h2>Enter your email to access the PDF</h2>
+
+  <h1>🚀 Unlock Your Hackathon Cheatsheet!</h1>
+  <p class="description">
+    <strong>StuVis</strong> is your AI-powered companion app designed to guide students through career planning, fitness routines, networking, real-world projects, and more. 
+    We're currently <strong>building StuVis</strong> to become the ultimate all-in-one growth platform for students like you. 
+    <br><br>
+    By filling out our form, you not only get early access and perks, but also help shape an app that's made just for you — your goals, your struggles, your wins.
+  </p>
+
+  <p class="description">
+    💡 <strong>Why should you fill the form?</strong><br>
+    Because your input directly helps us prioritize features that matter to students. Whether it’s building AI resume generators, personalized task planners, or peer collaboration tools — your voice leads the way.
+  </p>
+
   <input type="email" id="emailInput" placeholder="Enter your email" />
+  <br>
   <button onclick="checkEmail()">Submit</button>
   <p id="result"></p>
+
+  <footer>
+    &copy; 2025 StuVis – Built for students, by students.
+  </footer>
 
   <script>
     function checkEmail() {
       const email = document.getElementById("emailInput").value;
       fetch(`https://script.google.com/macros/s/your-script-id/exec?email=${email}`)
-        .then(res => res.text())
+        .then(res => res.json())
         .then(data => {
-          if (data.includes("http")) {
-            document.getElementById("result").innerHTML = `<a href="${data}" target="_blank">Download PDF</a>`;
+          if (data.status === "existing") {
+            document.getElementById("result").innerHTML = `<a href="${data.link}" target="_blank">Download PDF</a>`;
+          } else if (data.status === "new") {
+            document.getElementById("result").innerHTML = `<a href="https://your-form-link.com" target="_blank">Fill the Survey Form</a>`;
           } else {
-            document.getElementById("result").innerText = "Please fill the form first!";
+            document.getElementById("result").innerText = "Something went wrong. Please try again later.";
           }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          document.getElementById("result").innerText = "Error checking your email. Please try again later.";
         });
     }
   </script>
+
 </body>
 </html>
+
