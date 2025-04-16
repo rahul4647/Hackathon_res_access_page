@@ -88,7 +88,7 @@
   <script>
     function checkEmail() {
       const email = document.getElementById("emailInput").value;
-      fetch(`https://script.google.com/macros/s/AKfycbxCserEwNVntSC-FstWSSiLjZkzMgpfdGXtp5YdppZKZwJxHvjbb9kcfgvVUHHNXJnfRA/exec`)
+      fetch(`https://script.google.com/macros/s/AKfycbxCserEwNVntSC-FstWSSiLjZkzMgpfdGXtp5YdppZKZwJxHvjbb9kcfgvVUHHNXJnfRA/exec?email=${email}`)
         .then(res => res.json())
         .then(data => {
           if (data.status === "existing") {
