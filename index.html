@@ -92,9 +92,9 @@
         .then(res => res.json())
         .then(data => {
           if (data.status === "existing") {
-            document.getElementById("result").innerHTML = `<a href="${data.link}" target="_blank">Download PDF</a>`;
+            document.getElementById("result").innerHTML = `<a href="https://drive.google.com/file/d/1jymTBOzey87Rd2IKqKl1lkImHyQbkvYv/view?usp=sharing " target="_blank">Download PDF</a>`;
           } else if (data.status === "new") {
-            document.getElementById("result").innerHTML = `<a href="https://your-form-link.com" target="_blank">Fill the Survey Form</a>`;
+            document.getElementById("result").innerHTML = `<a href="https://docs.google.com/forms/d/1kjJgiDzCPp1xj73aTak1VAJkVJ3JVdv_G7gXVshpJUY/edit" target="_blank">Fill the Survey Form</a>`;
           } else {
             document.getElementById("result").innerText = "Something went wrong. Please try again later.";
           }
